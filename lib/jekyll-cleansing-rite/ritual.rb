@@ -1,4 +1,5 @@
 #Jekyll::External.require_with_graceful_fail 'htmlbeautifier'
+binding.pry
 require 'htmlbeautifier'
 require 'pry'
 
