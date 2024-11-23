@@ -24,7 +24,7 @@ module Jekyll
 end
 
 Jekyll::Hooks.register :site, :after_init do |site|
-  Jekyll.logger.debug('Lighting incense:', 'Jekyll\'s Machine Spirit is pleased')
+  puts 'Lighting incense: '.rjust(20) + ' Jekyll\'s Machine Spirit is pleased'
 end
 
 Jekyll::Hooks.register :pages, :post_render do |page|
