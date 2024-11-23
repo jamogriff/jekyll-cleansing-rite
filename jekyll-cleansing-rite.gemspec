@@ -11,7 +11,7 @@ Gem::Specification.new do |s|
 
   s.homepage = "https://github.com/jamogriff/jekyll-cleansing-rite"
   s.license = "MIT"
-  s.files    = ["lib/jekyll-cleansing-rite.rb"]
+  s.files    = `git ls-files -z`.split("\x0").select { |f| f.match(%r!^(lib|LICENSE|README)!i) }
 
   s.required_ruby_version = ">= 2.7"
 
