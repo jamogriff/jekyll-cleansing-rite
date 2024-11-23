@@ -16,6 +16,7 @@ Gem::Specification.new do |s|
   s.required_ruby_version = ">= 2.7"
 
   s.add_dependency "jekyll", ">= 3.0", "< 5.0"
+  s.add_dependency "htmlbeautifier", "~> 1.4"
 
-  s.add_development_dependency "bundler"
+  s.add_development_dependency "bundler", "~> 2.1"
 end

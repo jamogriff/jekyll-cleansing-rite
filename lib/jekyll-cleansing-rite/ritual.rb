@@ -1,19 +1,13 @@
-#Jekyll::External.require_with_graceful_fail 'htmlbeautifier'
-binding.pry
 require 'htmlbeautifier'
-require 'pry'
 
 module Jekyll
   module CleansingRite
-    binding.pry
     class Ritual
-      HERETICAL_FILETYPE = '.html'
-
       attr_reader :logger
 
       def initialize(logger)
         @logger = logger
-        @logger.debug("The Machine Spirit has allowed a #{self.class} to be invoked")
+        @logger.debug("Invocation:", "#{self.class.name.split('::').last} has been instantiated")
       end
 
       def perform(file)

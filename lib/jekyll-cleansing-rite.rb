@@ -1,32 +1,43 @@
 require 'jekyll-cleansing-rite/ritual'
 require 'jekyll-cleansing-rite/page_ritual'
 require 'jekyll-cleansing-rite/document_ritual'
-require 'pry'
 
 module Jekyll
   module CleansingRite
-    #require 'rite_of_cleansing/ritual'
-    # autoload :HtmlBeautifier, 'htmlbeautifier'
+    VOIDSPACE_RIDDEN_FILETYPE = '.html'
 
     attr_reader :page_ritual, :document_ritual
 
-    def self.manifest_page_ritual()
+    def self.invoke_page_ritual()
       @page_ritual ||= PageRitual.new(Jekyll.logger)
     end
 
-    def self.manifest_document_ritual()
+    def self.invoke_document_ritual()
       @document_ritual ||= DocumentRitual.new(Jekyll.logger)
+    end
+
+    # Jekyll::Page or Jekyll::Document
+    def self.detects_voidspace?(doc_page)
+      doc_page.output_ext === VOIDSPACE_RIDDEN_FILETYPE
     end
   end
 end
 
+Jekyll::Hooks.register :site, :after_init do |site|
+  Jekyll.logger.debug('Lighting incense:', 'Jekyll\'s Machine Spirit is pleased')
+end
+
 Jekyll::Hooks.register :pages, :post_render do |page|
-  ritual = Jekyll::CleansingRite.manifest_page_ritual()
-  ritual.perform(page);
+  if Jekyll::CleansingRite.detects_voidspace?(page)
+    ritual = Jekyll::CleansingRite.invoke_page_ritual()
+    ritual.perform(page);
+  end
 end
 
 Jekyll::Hooks.register :documents, :post_render do |doc|
-  ritual = Jekyll::CleansingRite.manifest_document_ritual()
-  ritual.perform(doc)
+  if Jekyll::CleansingRite.detects_voidspace?(doc)
+    ritual = Jekyll::CleansingRite.invoke_document_ritual()
+    ritual.perform(doc)
+  end
 end
 

@@ -1,5 +1,3 @@
-#require 'ritual'
-
 module Jekyll
   module CleansingRite
     class PageRitual < Ritual
@@ -9,10 +7,8 @@ module Jekyll
       end
 
       def perform(page)
-        if page.output_ext === HERETICAL_FILETYPE
-          @logger.debug('Cleansing Spirit:', page.name)
-          page.output = self.cleanse(page.output)
-        end
+        @logger.debug('Cleansing Spirit:', page.name)
+        page.output = self.cleanse(page.output)
       end
 
     end

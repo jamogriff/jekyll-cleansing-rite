@@ -1,20 +1,14 @@
-#require 'ritual'
-
-require 'pry'
 module Jekyll
   module CleansingRite
-    binding.pry
     class DocumentRitual < Ritual
 
       def initialize(logger)
         super
       end
 
-      def perform(page)
-        if document.output_ext === HERETICAL_FILETYPE
-          @logger.debug('Cleansing Spirit:', document.relative_path)
-          document.output = self.cleanse(document.output)
-        end
+      def perform(doc)
+        @logger.debug('Cleansing Spirit:', doc.relative_path)
+        doc.output = self.cleanse(doc.output)
       end
 
     end
